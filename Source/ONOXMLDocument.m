@@ -486,6 +486,7 @@ static void ONOSetErrorFromXMLErrorPtr(NSError * __autoreleasing *error, xmlErro
 @property (readwrite, nonatomic, copy) NSString *rawXMLString;
 @property (readwrite, nonatomic, copy) NSString *tag;
 @property (readwrite, nonatomic, assign) NSUInteger lineNumber;
+@property (readwrite, nonatomic, assign) NSRange elementRange;
 #ifdef __cplusplus
 @property (readwrite, nonatomic, copy) NSString *ns;
 #else
@@ -536,6 +537,14 @@ static void ONOSetErrorFromXMLErrorPtr(NSError * __autoreleasing *error, xmlErro
     }
 
     return _lineNumber;
+}
+
+- (NSRange)elementRange {
+    NSRange localRange = [[self.parent description] rangeOfString:self.stringValue];
+    NSRange globalRange = [[self.document description] rangeOfString:self.parent.description];
+    self.elementRange = NSMakeRange(globalRange.location + localRange.location, localRange.length);
+
+    return _elementRange;
 }
 
 #pragma mark -

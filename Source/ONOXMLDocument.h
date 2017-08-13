@@ -274,6 +274,11 @@
  */
 @property (readonly, nonatomic, assign) NSUInteger lineNumber;
 
+/**
+ The element's global NSRange
+ */
+@property (readonly, nonatomic, assign) NSRange elementRange;
+
 ///---------------------------
 /// @name Accessing Attributes
 ///---------------------------
