@@ -486,7 +486,7 @@ static void ONOSetErrorFromXMLErrorPtr(NSError * __autoreleasing *error, xmlErro
 @property (readwrite, nonatomic, copy) NSString *rawXMLString;
 @property (readwrite, nonatomic, copy) NSString *tag;
 @property (readwrite, nonatomic, assign) NSUInteger lineNumber;
-@property (readwrite, nonatomic, assign) NSRange elementRange;
+@property (readwrite, nonatomic, assign) NSRange range;
 #ifdef __cplusplus
 @property (readwrite, nonatomic, copy) NSString *ns;
 #else
@@ -543,11 +543,11 @@ static void ONOSetErrorFromXMLErrorPtr(NSError * __autoreleasing *error, xmlErro
     if ([self.document.rawSource length] > 0) {
         NSRange localRange = [[self.parent description] rangeOfString:self.stringValue];
         NSRange globalRange = [[self.document.rawSource description] rangeOfString:self.parent.description];
-        self.elementRange = NSMakeRange(globalRange.location + localRange.location, localRange.length);
+        self.range = NSMakeRange(globalRange.location + localRange.location, localRange.length);
     } else {
         [NSException raise:@"DocumentRawSourcePropertyMissingExeption" format:@"To use ONOXMLElement.elementRange property you should set before the Document.rawSource property"];
     }
-    return _elementRange;
+    return _range;
 }
 
 #pragma mark -

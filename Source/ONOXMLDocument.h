@@ -285,7 +285,7 @@
 /**
  The element's global NSRange
  */
-@property (readonly, nonatomic, assign) NSRange elementRange;
+@property (readonly, nonatomic, assign) NSRange range;
 
 ///---------------------------
 /// @name Accessing Attributes
