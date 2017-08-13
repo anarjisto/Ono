@@ -539,7 +539,7 @@ static void ONOSetErrorFromXMLErrorPtr(NSError * __autoreleasing *error, xmlErro
     return _lineNumber;
 }
 
-- (NSRange)elementRange {
+- (NSRange)range {
     if ([self.document.rawSource length] > 0) {
         NSRange localRange = [[self.parent description] rangeOfString:self.stringValue];
         NSRange globalRange = [[self.document.rawSource description] rangeOfString:self.parent.description];
