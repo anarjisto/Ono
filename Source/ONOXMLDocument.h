@@ -146,6 +146,14 @@
  */
 @property (readonly, nonatomic, assign) NSStringEncoding stringEncoding;
 
+///---------------------------------
+/// @name Accessing the Raw Source
+///---------------------------------
+
+/**
+ The raw source of the document.
+ */
+@property (nonatomic, strong) NSString *rawSource;
 
 ///---------------------------------
 /// @name Accessing the Root Element

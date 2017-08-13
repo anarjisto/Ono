@@ -540,10 +540,13 @@ static void ONOSetErrorFromXMLErrorPtr(NSError * __autoreleasing *error, xmlErro
 }
 
 - (NSRange)elementRange {
-    NSRange localRange = [[self.parent description] rangeOfString:self.stringValue];
-    NSRange globalRange = [[self.document description] rangeOfString:self.parent.description];
-    self.elementRange = NSMakeRange(globalRange.location + localRange.location, localRange.length);
-
+    if ([self.document.rawSource length] > 0) {
+        NSRange localRange = [[self.parent description] rangeOfString:self.stringValue];
+        NSRange globalRange = [[self.document description] rangeOfString:self.parent.description];
+        self.elementRange = NSMakeRange(globalRange.location + localRange.location, localRange.length);
+    } else {
+        self.elementRange = NSMakeRange(0, 0);
+    }
     return _elementRange;
 }
 
