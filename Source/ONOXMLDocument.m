@@ -545,7 +545,7 @@ static void ONOSetErrorFromXMLErrorPtr(NSError * __autoreleasing *error, xmlErro
         NSRange globalRange = [[self.document.rawSource description] rangeOfString:self.parent.description];
         self.elementRange = NSMakeRange(globalRange.location + localRange.location, localRange.length);
     } else {
-        self.elementRange = NSMakeRange(0, 0);
+        [NSException raise:@"DocumentRawSourcePropertyMissingExeption" format:@"To use ONOXMLElement.elementRange property you should set before the Document.rawSource property"];
     }
     return _elementRange;
 }
